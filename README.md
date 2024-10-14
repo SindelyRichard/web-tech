@@ -14,3 +14,23 @@ Ha nem megfelelő a beviteli mező értéke, akkor kapjon piros keretet és legy
 Csak JavaScript-el, és egy másik verzió ahol jQuery-vel.
 
 ---
+
+## js_3 feladat leírása:
+Űrlap elem, az alábbi adatokkal:
+- név (nem üres, karakter, minimum 10 hossz)
+- születési dátum (dátum típus, kötelező)
+- anyja neve (nem üres, karakter, minimum 10 hossz)
+- taj szám (szám, 8 hossz, kötelező)
+- neme (nő/férfi, kötelező)
+Lakcím külön mezőkkel:
+- irányítószám (4 hossz, kötelező)
+- település (karakter, nem üres, minimum 2 hossz)
+- utca (karakter, nem üres, minimum 2 hossz)
+- házszám (szám, minimum 1)
+- lépcsőház, emelet (nem kötelező, szöveges)
+
+Ha nem jó valamelyik érték, akkor adjon a gombra kattintásra piros hátteret neki.
+Legyen a mezők fölött egy-egy szöveg is, olyan kiírással, hogy mi az ami nem megfelelő.
+Csak Javascript-el és egy másik verzió ahol JQuery is van.
+
+---
