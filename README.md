@@ -1,1 +1,2 @@
-# web-tech
+# Web technológiák
+Gyakorlati órákon kiadott feladatok.
