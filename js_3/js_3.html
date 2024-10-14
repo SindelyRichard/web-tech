@@ -1,0 +1,214 @@
+<html>
+
+<head>
+    <style>
+        .mdiv {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .inputContainers {
+            display: flex;
+            padding: 10px;
+            align-items: center;
+        }
+
+        label {
+            margin-right: 20px;
+            min-width: 150px;
+        }
+
+        .button {
+            margin-left: 100px;
+        }
+
+        input.invalid,
+        select.invalid,
+        textarea.invalid {
+            border: 2px solid red;
+        }
+
+        #munkakori {
+            height: 100px;
+            width: 300px;
+        }
+    </style>
+    <script>
+        function submit() {
+            validForm = true;
+            let nev = document.getElementById("nev");
+            let szuletesiDatum = document.getElementById("szulDatum");
+            let anyjaNeve = document.getElementById("anyjaNeve");
+            let taj = document.getElementById("taj");
+            let iranyito = document.getElementById("iranyito");
+            let telepules = document.getElementById("telepules");
+            let utca = document.getElementById("utca");
+            let hazszam = document.getElementById("hazszam");
+            let lepcsohaz = document.getElementById("lepcsohaz");
+            let ferfi = document.getElementById("ferfi").checked;
+            let no = document.getElementById("no").checked;
+            if (nev.value == "") {
+                const error = document.getElementById("nevError");
+                error.innerHTML = "A mező üres";
+                validForm = false;
+                nev.classList.add("invalid");
+            }
+            else {
+                const error = document.getElementById("nevError");
+                error.innerHTML = "";
+                nev.classList.remove("invalid");
+            }
+            if (szuletesiDatum.value == "") {
+                const error = document.getElementById("szulDatumError");
+                error.innerHTML = "Töltse ki a születési dátumot!";
+                szuletesiDatum.classList.add("invalid");
+                validForm = false;
+            } else {
+                const error = document.getElementById("szulDatumError");
+                error.innerHTML = "";
+                szuletesiDatum.classList.remove("invalid");
+            }
+            if (anyjaNeve.value == "") {
+                const error = document.getElementById("anyjaNeveError");
+                error.innerHTML = "Töltse ki az üres mezőt";
+                validForm = false;
+                anyjaNeve.classList.add("invalid");
+            }
+            else {
+                const error = document.getElementById("anyjaNeveError");
+                error.innerHTML = "";
+                anyjaNeve.classList.remove("invalid");
+            }
+            if (taj.value == "" || (taj.value.length < 8 || taj.value.length > 8)) {
+                const error = document.getElementById("tajError");
+                error.innerHTML = "A mező üres, vagy a hossza nem megfelelő (8)";
+                taj.classList.add("invalid");
+                validForm = false;
+            } else {
+                const error = document.getElementById("tajError");
+                error.innerHTML = "";
+                taj.classList.remove("invalid");
+            }
+            if (!ferfi && !no) {
+                const error = document.getElementById("nemError");
+                error.innerHTML = "Válassza ki a nemet!";
+
+                validForm = false;
+            } else {
+                const error = document.getElementById("nemError");
+                error.innerHTML = "";
+            }
+            if (iranyito.value == "" || (iranyito.value.length < 4 || iranyito.value.length > 4)) {
+                const error = document.getElementById("iranyitoError");
+                error.innerHTML = "Írja be az irányítószámot!";
+                iranyito.classList.add("invalid");
+                validForm = false;
+            } else {
+                const error = document.getElementById("iranyitoError");
+                error.innerHTML = "";
+                iranyito.classList.remove("invalid");
+            }
+            if (telepules.value.length < 2 || telepules.value == "") {
+                const error = document.getElementById("telepulesError");
+                error.innerHTML = "Írja be a település nevét! 2 karakter minimum";
+                telepules.classList.add("invalid");
+                validForm = false;
+            } else {
+                telepules.classList.remove("invalid");
+                const error = document.getElementById("telepulesError");
+                error.innerHTML = "";
+            }
+            if (utca.value.length < 2 || utca.value == "") {
+                const error = document.getElementById("utcaError");
+                error.innerHTML = "Írja be az utca nevét! 2 karakter minimum!";
+                utca.classList.add("invalid");
+                validForm = false;
+            } else {
+                const error = document.getElementById("utcaError");
+                error.innerHTML = "";
+                utca.classList.remove("invalid");
+            }
+            if (hazszam.value == "") {
+                const error = document.getElementById("hazszamError");
+                error.innerHTML = "Írja be a házszámot! ";
+                hazszam.classList.add("invalid");
+                validForm = false;
+            } else {
+                const error = document.getElementById("hazszamError");
+                error.innerHTML = "";
+                hazszam.classList.remove("invalid");
+            }
+            if (validForm) {
+                alert("Sikeres elküldés!");
+            }
+            console.log(szuletesiDatum.value);
+        }
+    </script>
+</head>
+
+<body>
+    <div class="mdiv">
+        <h1>Adatok</h1>
+        <div class="inputContainers">
+            <label>Név:</label>
+            <input type="text" maxlength="10" value="" id="nev">
+            <label id="nevError"></label>
+        </div>
+        <div class="inputContainers">
+            <label>Születési dátum:</label>
+            <input type="date" id="szulDatum">
+            <label id="szulDatumError"></label>
+        </div>
+        <div class="inputContainers">
+            <label>Anyja neve:</label>
+            <input type="text" maxlength="10" value="" id="anyjaNeve">
+            <label id="anyjaNeveError"></label>
+        </div>
+        <div class="inputContainers">
+            <label>Taj szám:</label>
+            <input type="number" maxlength="8" minlength="8" value="" id="taj">
+            <label id="tajError"></label>
+        </div>
+        <div class="inputContainers">
+            <input type="radio" id="ferfi" name="nem">
+            <label for="ferfi">Férfi</label>
+            <input type="radio" id="no" name="nem">
+            <label for="no">Nő</label>
+            <label id="nemError"></label>
+        </div>
+        <h2>Lakcím</h2>
+        <div class="inputContainers">
+            <label>Irányítószám:</label>
+            <input type="number" maxlength="4" minlength="4" value="" id="iranyito">
+            <label id="iranyitoError"></label>
+        </div>
+        <div class="inputContainers">
+            <label>Település:</label>
+            <input type="text" minlength="2" value="" id="telepules">
+            <label id="telepulesError"></label>
+        </div>
+        <div class="inputContainers">
+            <label>Utca:</label>
+            <input type="text" minlength="2" value="" id="utca">
+            <label id="utcaError"></label>
+        </div>
+        <div class="inputContainers">
+            <label>Házszám:</label>
+            <input type="number" minlength="1" value="" id="hazszam">
+            <label id="hazszamError"></label>
+        </div>
+        <div class="inputContainers">
+            <label>Lépcsőház, emelet:</label>
+            <input type="text" value="" id="lepcsohaz">
+        </div>
+        <div class="button">
+            <button onclick="submit()">Submit</button>
+        </div>
+    </div>
+
+</body>
+
+</html>
