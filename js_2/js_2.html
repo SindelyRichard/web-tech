@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <style>
         .mdiv {
@@ -55,7 +54,6 @@
             }
             else {
                 nev.classList.remove("invalid");
-                formValid = true;
             }
             if (isNaN(eletkor.value) || eletkor.value < 1 || eletkor.value > 120) {
                 errors.push("Az életkor 1 és 120 közötti szám kell legyen.");
@@ -63,7 +61,6 @@
                 formValid = false;
             } else {
                 eletkor.classList.remove("invalid");
-                formValid = true;
             }
             if (isNaN(fizetes.value) || fizetes.value < 200) {
                 errors.push("A fizetés legalább 200 eFt kell legyen.");
@@ -71,7 +68,6 @@
                 formValid = false;
             } else {
                 fizetes.classList.remove("invalid");
-                formValid = true;
             }
             if (munkakori.value.length < 200) {
                 errors.push("A munkaköri leírás legalább 200 karakter hosszú kell legyen.");
@@ -79,7 +75,6 @@
                 formValid = false;
             } else {
                 munkakori.classList.remove("invalid");
-                formValid = true;
             }
             if (vegzettseg.value === "null") {
                 errors.push("Kérjük, válassza ki a legmagasabb iskolai végzettséget.");
@@ -87,15 +82,12 @@
                 formValid = false;
             } else {
                 vegzettseg.classList.remove("invalid");
-                formValid = true;
             }
             if (!ferfi && !no) {
                 errors.push("Kérjük, válassza ki a nemet.");
                 formValid = false;
             }
-            else {
-                formValid = true;
-            }
+            
             const errorContainer = document.getElementById("errorMessages");
             errorContainer.innerHTML = errors.join("<br>");
             if (formValid) {
@@ -138,10 +130,10 @@
             </select>
         </div>
         <div class="inputContainers">
-            <input type="checkbox" id="ferfi">
-            <label>Férfi</label>
-            <input type="checkbox" id="no">
-            <label>Nő</label>
+            <input type="radio" id="ferfi" name="nem">
+            <label for="ferfi">Férfi</label>
+            <input type="radio" id="no" name="nem">
+            <label for="no">Nő</label>
         </div>
         <div class="button">
             <button onclick="submit()">Submit</button>
