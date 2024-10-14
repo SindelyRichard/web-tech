@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <style>
+        .mdiv {
+            display: block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .inputContainers {
+            display: flex;
+            padding: 10px;
+            align-items: center;
+        }
+
+        label {
+            margin-right: 20px;
+            min-width: 150px;
+        }
+
+        .button {
+            margin-left: 100px;
+        }
+
+        input.invalid,
+        select.invalid,
+        textarea.invalid {
+            border: 2px solid red;
+        }
+
+        #munkakori {
+            height: 100px;
+            width: 300px;
+        }
+    </style>
+    <script>
+        function submit() {
+            errors = [];
+            validForm = true;
+            let nev = document.getElementById("nev");
+            let eletkor = document.getElementById("eletkor");
+            let munkahely = document.getElementById("munkahely");
+            let fizetes = document.getElementById("fizetes");
+            let munkakori = document.getElementById("munkakori");
+            let vegzettseg = document.getElementById("vegzettseg");
+            let ferfi = document.getElementById("ferfi").checked;
+            let no = document.getElementById("no").checked;
+            if (nev.value == "") {
+                errors.push("Név mező üres!");
+                validForm = false;
+                nev.classList.add("invalid");
+            }
+            else {
+                nev.classList.remove("invalid");
+                formValid = true;
+            }
+            if (isNaN(eletkor.value) || eletkor.value < 1 || eletkor.value > 120) {
+                errors.push("Az életkor 1 és 120 közötti szám kell legyen.");
+                eletkor.classList.add("invalid");
+                formValid = false;
+            } else {
+                eletkor.classList.remove("invalid");
+                formValid = true;
+            }
+            if (isNaN(fizetes.value) || fizetes.value < 200) {
+                errors.push("A fizetés legalább 200 eFt kell legyen.");
+                fizetes.classList.add("invalid");
+                formValid = false;
+            } else {
+                fizetes.classList.remove("invalid");
+                formValid = true;
+            }
+            if (munkakori.value.length < 200) {
+                errors.push("A munkaköri leírás legalább 200 karakter hosszú kell legyen.");
+                munkakori.classList.add("invalid");
+                formValid = false;
+            } else {
+                munkakori.classList.remove("invalid");
+                formValid = true;
+            }
+            if (vegzettseg.value === "null") {
+                errors.push("Kérjük, válassza ki a legmagasabb iskolai végzettséget.");
+                vegzettseg.classList.add("invalid");
+                formValid = false;
+            } else {
+                vegzettseg.classList.remove("invalid");
+                formValid = true;
+            }
+            if (!ferfi && !no) {
+                errors.push("Kérjük, válassza ki a nemet.");
+                formValid = false;
+            }
+            else {
+                formValid = true;
+            }
+            const errorContainer = document.getElementById("errorMessages");
+            errorContainer.innerHTML = errors.join("<br>");
+            if (formValid) {
+                alert("Sikeres elküldés!");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div class="mdiv">
+        <div class="inputContainers">
+            <label>Név:</label>
+            <input type="text" maxlength="10" value="" id="nev">
+        </div>
+        <div class="inputContainers">
+            <label>Életkor:</label>
+            <input type="number" min="1" max="119" value="" id="eletkor">
+        </div>
+        <div class="inputContainers">
+            <label>Munkahely:</label>
+            <input type="text" maxlength="5" value="" id="munkahely">
+        </div>
+        <div class="inputContainers">
+            <label>Fizetés:</label>
+            <input type="number" min="200" value="" id="fizetes">
+        </div>
+        <div class="inputContainers">
+            <label>Munkaköri leírás:</label>
+            <textarea type="text" minlength="200" value="" id="munkakori"></textarea>
+        </div>
+        <div class="inputContainers">
+            <label>Legmagasabb iskolai végzettség:</label>
+            <select size="1" id="vegzettseg">
+                <option value="null" selected></option>
+                <option value="altsuli">Általános iskola</option>
+                <option value="erettsegi">Érettségi</option>
+                <option value="foiskola">Főiskola (BSC)</option>
+                <option value="egyetem">Egyetem (MSC)</option>
+            </select>
+        </div>
+        <div class="inputContainers">
+            <input type="checkbox" id="ferfi">
+            <label>Férfi</label>
+            <input type="checkbox" id="no">
+            <label>Nő</label>
+        </div>
+        <div class="button">
+            <button onclick="submit()">Submit</button>
+        </div>
+    </div>
+    <div id="errorMessages" class="error-messages"></div>
+</body>
+
+</html>
