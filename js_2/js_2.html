@@ -58,39 +58,39 @@
             if (isNaN(eletkor.value) || eletkor.value < 1 || eletkor.value > 120) {
                 errors.push("Az életkor 1 és 120 közötti szám kell legyen.");
                 eletkor.classList.add("invalid");
-                formValid = false;
+                validForm = false;
             } else {
                 eletkor.classList.remove("invalid");
             }
             if (isNaN(fizetes.value) || fizetes.value < 200) {
                 errors.push("A fizetés legalább 200 eFt kell legyen.");
                 fizetes.classList.add("invalid");
-                formValid = false;
+                validForm = false;
             } else {
                 fizetes.classList.remove("invalid");
             }
             if (munkakori.value.length < 200) {
                 errors.push("A munkaköri leírás legalább 200 karakter hosszú kell legyen.");
                 munkakori.classList.add("invalid");
-                formValid = false;
+                validForm = false;
             } else {
                 munkakori.classList.remove("invalid");
             }
             if (vegzettseg.value === "null") {
                 errors.push("Kérjük, válassza ki a legmagasabb iskolai végzettséget.");
                 vegzettseg.classList.add("invalid");
-                formValid = false;
+                validForm = false;
             } else {
                 vegzettseg.classList.remove("invalid");
             }
             if (!ferfi && !no) {
                 errors.push("Kérjük, válassza ki a nemet.");
-                formValid = false;
+                validForm = false;
             }
             
             const errorContainer = document.getElementById("errorMessages");
             errorContainer.innerHTML = errors.join("<br>");
-            if (formValid) {
+            if (validForm) {
                 alert("Sikeres elküldés!");
             }
         }
